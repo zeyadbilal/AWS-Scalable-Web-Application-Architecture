@@ -4,13 +4,8 @@ A full recorded walkthrough of the deployed AWS infrastructure exists at `docs/v
 
 **This file is intentionally excluded from git** (see `.gitignore`) because it exceeds GitHub's 100 MB hard limit for a normal push. It is hosted externally instead.
 
-## Action needed
+## Watch it
 
-Upload `aws-project-walkthrough.mp4` to your host of choice (YouTube as unlisted, Google Drive, etc.), then replace the placeholder link below and in the two other places it appears:
+**Video link:** https://drive.google.com/file/d/1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G/view?usp=sharing
 
-- `README.md` → **Video Walkthrough** section
-- `docs/demo-script.md` → intro note
-
-**Video link:** `[ADD VIDEO LINK HERE]`
-
-Once you have the link, share it and it can be filled in across all three files in one pass.
+It's also embedded as a clickable thumbnail in the main [`README.md`](../../README.md#video-walkthrough), and referenced from [`docs/demo-script.md`](../demo-script.md) and [`docs/screenshots/README.md`](../screenshots/README.md).

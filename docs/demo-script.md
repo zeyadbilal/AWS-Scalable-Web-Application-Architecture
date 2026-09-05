@@ -1,6 +1,6 @@
 # Demonstration Script
 
-A full recorded walkthrough of the deployed infrastructure exists — see [`docs/video/README.md`](video/README.md) for the hosting link. This document is the **companion outline** for that recording: a topic checklist covering what a complete walkthrough should show, useful for jumping to a specific section or for re-recording/extending the video later. It only includes features the project documentation records as actually implemented; it does not include Route 53, HTTPS, or any other planned-but-not-deployed component (see [`docs/architecture.md`](architecture.md#known-documentation-discrepancies)).
+A full recorded walkthrough of the deployed infrastructure is available here: **https://drive.google.com/file/d/1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G/view?usp=sharing** (also embedded in the main [`README.md`](../README.md#video-walkthrough)). This document is the **companion outline** for that recording: a topic checklist covering what a complete walkthrough should show, useful for jumping to a specific section or for re-recording/extending the video later. It only includes features the project documentation records as actually implemented; it does not include Route 53, HTTPS, or any other planned-but-not-deployed component (see [`docs/architecture.md`](architecture.md#known-documentation-discrepancies)).
 
 > If you add timestamps for the recorded video against each numbered section below, this file becomes a clickable table of contents for it.
 

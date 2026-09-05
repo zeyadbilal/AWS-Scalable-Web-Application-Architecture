@@ -176,11 +176,11 @@ Documented, actually-performed checks include: backend/frontend health checks, a
 
 ## Video walkthrough
 
-The full console workflow — networking, compute, database, security, and monitoring — is documented in a recorded video rather than static screenshots:
+The full console workflow — networking, compute, database, security, and monitoring — is documented in a recorded video rather than static screenshots. Click the thumbnail to watch:
 
-**Video:** `[ADD VIDEO LINK HERE]`
+[![Watch the Lumina Dental AWS project walkthrough](https://drive.google.com/thumbnail?id=1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G&sz=w1000)](https://drive.google.com/file/d/1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G/view?usp=sharing)
 
-*(Hosted externally rather than committed to git — the raw file is 168 MB, over GitHub's 100 MB per-file push limit. See [`docs/video/README.md`](docs/video/README.md).)*
+*(Hosted on Google Drive rather than committed to git — the raw file is 168 MB, over GitHub's 100 MB per-file push limit. See [`docs/video/README.md`](docs/video/README.md).)*
 
 ## Screenshots
 
