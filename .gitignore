@@ -1,0 +1,39 @@
+# Secrets and credentials — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+credentials.json
+credentials.csv
+aws-credentials
+.aws/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependency directories (if application source is added later)
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build output
+dist/
+build/
+.next/
+
+# Infrastructure-as-code local state (if IaC is added later)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Local scratch / temp files
+*.tmp
+*.log
