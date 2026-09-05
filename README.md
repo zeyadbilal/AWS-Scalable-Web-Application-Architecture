@@ -31,6 +31,14 @@ _Editable source: [`docs/architecture/aws-architecture.drawio`](docs/architectur
 
 Full architectural detail — including exact CIDR blocks, route tables, and the reasoning behind every major decision — is in **[`docs/architecture.md`](docs/architecture.md)**.
 
+### Video walkthrough
+
+The full console workflow — networking, compute, database, security, and monitoring — is documented in a recorded video rather than static screenshots. Click the thumbnail to watch:
+
+[![Watch the Lumina Dental AWS project walkthrough](https://drive.google.com/thumbnail?id=1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G&sz=w1000)](https://drive.google.com/file/d/1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G/view?usp=sharing)
+
+*(Hosted on Google Drive rather than committed to git — the raw file is 168 MB, over GitHub's 100 MB per-file push limit. See [`docs/video/README.md`](docs/video/README.md).)*
+
 ## Architecture flow
 
 ```
@@ -173,14 +181,6 @@ This project was built **manually through the AWS Console** — there is no Infr
 ## Verification / testing
 
 Documented, actually-performed checks include: backend/frontend health checks, an unattended reboot test (required before the AMI could be trusted as a scaling source), application access validated through the ALB, SSM Agent and Session Manager connectivity, and two live WAF validations (a blocked `/admin` request traced to its exact matching rule, and an observed internet scanner correctly allowed through). Auto Scaling under real load, RDS failover, and CloudWatch alarm firing are **not** documented as tested — see the full table and suggested safe-verification methods in [`docs/deployment.md#verification--testing-performed`](docs/deployment.md#verification--testing-performed) and [`docs/troubleshooting.md`](docs/troubleshooting.md).
-
-## Video walkthrough
-
-The full console workflow — networking, compute, database, security, and monitoring — is documented in a recorded video rather than static screenshots. Click the thumbnail to watch:
-
-[![Watch the Lumina Dental AWS project walkthrough](https://drive.google.com/thumbnail?id=1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G&sz=w1000)](https://drive.google.com/file/d/1U9iVSWNGE3MAy1IrROxxaNAWLucN7z9G/view?usp=sharing)
-
-*(Hosted on Google Drive rather than committed to git — the raw file is 168 MB, over GitHub's 100 MB per-file push limit. See [`docs/video/README.md`](docs/video/README.md).)*
 
 ## Screenshots
 
