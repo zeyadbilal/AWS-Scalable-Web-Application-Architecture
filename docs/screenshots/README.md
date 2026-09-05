@@ -1,8 +1,8 @@
 # Screenshots
 
-No screenshots were included in the original project workspace — only the architecture diagram (`docs/architecture/original-target-diagram.png`) and two build-documentation files were provided. Nothing has been fabricated to fill this gap.
+No static screenshots are included in this repository. **Instead, the full console workflow — networking, compute, database, security, and monitoring — is documented in a recorded video walkthrough**: see [`docs/video/README.md`](../video/README.md) and the **Video Walkthrough** section of the main [`README.md`](../../README.md) for the link.
 
-If console screenshots are captured later (e.g., while following [`docs/demo-script.md`](../demo-script.md)), organize them here by topic, matching the sections in the documentation:
+If individual screenshots are extracted from that video later (or captured fresh), organize them here by topic, matching the sections in the documentation:
 
 ```
 docs/screenshots/

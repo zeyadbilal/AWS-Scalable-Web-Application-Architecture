@@ -1,6 +1,6 @@
 # Project Structure
 
-This repository documents an AWS infrastructure project that was built through the AWS Console. **No application source code (Next.js, FastAPI, Nginx configuration, etc.) was present in the original project workspace** — only the architecture diagram and two build-documentation files. This repository therefore contains documentation, the architecture diagram, and evidence of the implementation, organized for public review. If the application source code becomes available later, it belongs under a new top-level `src/` (or `app/`) directory without disturbing the structure below.
+This repository documents an AWS infrastructure project that was built through the AWS Console. **No application source code (Next.js, FastAPI, Nginx configuration, etc.) was present in the original project workspace** — only the architecture diagram, two build-documentation files, and a recorded video walkthrough. This repository therefore contains documentation, the architecture diagram, and evidence of the implementation, organized for public review. If the application source code becomes available later, it belongs under a new top-level `src/` (or `app/`) directory without disturbing the structure below.
 
 ```
 .
@@ -16,7 +16,7 @@ This repository documents an AWS infrastructure project that was built through t
     ├── deployment.md                      # Actual build sequence, prerequisites, verification performed
     ├── troubleshooting.md                 # Operational workflow, alarm response, configuration checks
     ├── project-structure.md               # This file
-    ├── demo-script.md                     # Suggested walkthrough sequence (no recorded demo exists)
+    ├── demo-script.md                     # Companion outline for the recorded video walkthrough
     ├── architecture/
     │   ├── aws-architecture.png           # Rendered solution diagram (embedded in README)
     │   ├── aws-architecture.svg           # Vector version of the same diagram
@@ -26,7 +26,11 @@ This repository documents an AWS infrastructure project that was built through t
     │                                      # target architecture; see docs/architecture.md for the
     │                                      # documented discrepancies between it and the deployment
     ├── screenshots/
-    │   └── README.md                      # Suggested folder layout; no screenshots were provided
+    │   └── README.md                      # Suggested folder layout; documented via video instead (see docs/video/)
+    ├── video/
+    │   ├── README.md                      # Hosting link/status for the recorded walkthrough
+    │   └── aws-project-walkthrough.mp4    # Gitignored (168 MB, exceeds GitHub's 100 MB push limit) —
+    │                                      # hosted externally; kept locally for convenience only
     └── source-material/
         ├── project-doc-raw.md             # Original, unedited build notes (primary source of truth)
         └── architecture-report-full.md    # Full evidence-audited architecture report (exhaustive

@@ -27,7 +27,7 @@ The application stack is **Next.js** (frontend), **FastAPI/Uvicorn** (backend AP
 
 ![AWS Solution Architecture](docs/architecture/aws-architecture.png)
 
-*Editable source: [`docs/architecture/aws-architecture.drawio`](docs/architecture/aws-architecture.drawio) (open in [diagrams.net](https://app.diagrams.net)) · Vector: [`docs/architecture/aws-architecture.svg`](docs/architecture/aws-architecture.svg)*
+_Editable source: [`docs/architecture/aws-architecture.drawio`](docs/architecture/aws-architecture.drawio) (open in [diagrams.net](https://app.diagrams.net)) · Vector: [`docs/architecture/aws-architecture.svg`](docs/architecture/aws-architecture.svg)_
 
 Full architectural detail — including exact CIDR blocks, route tables, and the reasoning behind every major decision — is in **[`docs/architecture.md`](docs/architecture.md)**.
 
@@ -53,49 +53,49 @@ Full request-lifecycle diagram (sequence form): [`docs/architecture.md#request-l
 
 ## AWS services used
 
-| AWS Service | Purpose | Implementation |
-|---|---|---|
-| Amazon VPC | Network isolation | `aws-project-vpc`, `10.0.0.0/16`, 6 subnets / 2 AZs / 5 route tables |
-| Internet Gateway | Public subnet internet access | `aws-project-igw` |
-| NAT Gateway (×2) | Outbound-only access for private subnets | One per AZ, zone-local routing, dedicated EIPs |
-| Amazon EC2 | Application compute | `t3.small`, launched from a custom Golden AMI |
-| EC2 Launch Template | Standardized instance definition | Custom AMI + `ec2-sg` + `LuminaEC2SSMRole` instance profile |
-| EC2 Auto Scaling Group | Capacity management, self-healing | `dental-asg`; min 2 / desired 2 / max 6; target tracking on CPU |
-| Application Load Balancer | Layer 7 public entry point | Internet-facing, multi-AZ, HTTP :80 |
-| ALB Target Group | Target registration & health checks | Instance type, HTTP:80, bound to the ASG |
-| Amazon RDS (PostgreSQL) | Managed relational database | Private isolated subnets, TCP 5432, Multi-AZ as documented |
-| Amazon CloudFront | Edge delivery & static caching | Origin = ALB |
-| AWS WAF | Layer 7 request inspection | Web ACL `dental-waf`, 4 managed rule groups + 5 custom rules |
-| AWS Systems Manager | SSH-free administrative access | Session Manager via `LuminaEC2SSMRole` |
-| AWS IAM | Least-privilege instance permissions | `LuminaEC2SSMRole` + `AmazonSSMManagedInstanceCore` |
-| Amazon CloudWatch | Metrics & alarms | 7 alarms across ASG/ALB/Target Group/RDS |
-| Amazon SNS | Alarm notification delivery | Topic → email subscription |
-| Security Groups | Stateful tier-to-tier firewall | `alb-sg` → `ec2-sg` → `rds-sg`, chained by reference |
+| AWS Service               | Purpose                                  | Implementation                                                       |
+| ------------------------- | ---------------------------------------- | -------------------------------------------------------------------- |
+| Amazon VPC                | Network isolation                        | `aws-project-vpc`, `10.0.0.0/16`, 6 subnets / 2 AZs / 5 route tables |
+| Internet Gateway          | Public subnet internet access            | `aws-project-igw`                                                    |
+| NAT Gateway (×2)          | Outbound-only access for private subnets | One per AZ, zone-local routing, dedicated EIPs                       |
+| Amazon EC2                | Application compute                      | `t3.small`, launched from a custom Golden AMI                        |
+| EC2 Launch Template       | Standardized instance definition         | Custom AMI + `ec2-sg` + `LuminaEC2SSMRole` instance profile          |
+| EC2 Auto Scaling Group    | Capacity management, self-healing        | `dental-asg`; min 2 / desired 2 / max 6; target tracking on CPU      |
+| Application Load Balancer | Layer 7 public entry point               | Internet-facing, multi-AZ, HTTP :80                                  |
+| ALB Target Group          | Target registration & health checks      | Instance type, HTTP:80, bound to the ASG                             |
+| Amazon RDS (PostgreSQL)   | Managed relational database              | Private isolated subnets, TCP 5432, Multi-AZ as documented           |
+| Amazon CloudFront         | Edge delivery & static caching           | Origin = ALB                                                         |
+| AWS WAF                   | Layer 7 request inspection               | Web ACL `dental-waf`, 4 managed rule groups + 5 custom rules         |
+| AWS Systems Manager       | SSH-free administrative access           | Session Manager via `LuminaEC2SSMRole`                               |
+| AWS IAM                   | Least-privilege instance permissions     | `LuminaEC2SSMRole` + `AmazonSSMManagedInstanceCore`                  |
+| Amazon CloudWatch         | Metrics & alarms                         | 7 alarms across ASG/ALB/Target Group/RDS                             |
+| Amazon SNS                | Alarm notification delivery              | Topic → email subscription                                           |
+| Security Groups           | Stateful tier-to-tier firewall           | `alb-sg` → `ec2-sg` → `rds-sg`, chained by reference                 |
 
-*Planned but not deployed: **Amazon Route 53** and **AWS Certificate Manager** (no domain was purchased — the app is served over HTTP via the AWS-generated endpoint). Full table with rationale: [`docs/aws-services.md`](docs/aws-services.md).*
+_Planned but not deployed: **Amazon Route 53** and **AWS Certificate Manager** (no domain was purchased — the app is served over HTTP via the AWS-generated endpoint). Full table with rationale: [`docs/aws-services.md`](docs/aws-services.md)._
 
 ## Networking architecture
 
-| Subnet | AZ | CIDR | Purpose |
-|---|---|---|---|
-| `Public-Subnet-AZ1` | AZ-1 | `10.0.1.0/24` | NAT Gateway; ALB node |
-| `Private-App-Subnet-AZ1` | AZ-1 | `10.0.11.0/24` | EC2 / Auto Scaling Group |
-| `Private-DB-Subnet-AZ1` | AZ-1 | `10.0.21.0/24` | Amazon RDS (isolated — no internet route) |
-| `Public-Subnet-AZ2` | AZ-2 | `10.0.2.0/24` | NAT Gateway; ALB node |
-| `Private-App-Subnet-AZ2` | AZ-2 | `10.0.12.0/24` | EC2 / Auto Scaling Group |
-| `Private-DB-Subnet-AZ2` | AZ-2 | `10.0.22.0/24` | Amazon RDS (isolated — no internet route) |
+| Subnet                   | AZ   | CIDR           | Purpose                                   |
+| ------------------------ | ---- | -------------- | ----------------------------------------- |
+| `Public-Subnet-AZ1`      | AZ-1 | `10.0.1.0/24`  | NAT Gateway; ALB node                     |
+| `Private-App-Subnet-AZ1` | AZ-1 | `10.0.11.0/24` | EC2 / Auto Scaling Group                  |
+| `Private-DB-Subnet-AZ1`  | AZ-1 | `10.0.21.0/24` | Amazon RDS (isolated — no internet route) |
+| `Public-Subnet-AZ2`      | AZ-2 | `10.0.2.0/24`  | NAT Gateway; ALB node                     |
+| `Private-App-Subnet-AZ2` | AZ-2 | `10.0.12.0/24` | EC2 / Auto Scaling Group                  |
+| `Private-DB-Subnet-AZ2`  | AZ-2 | `10.0.22.0/24` | Amazon RDS (isolated — no internet route) |
 
 The database subnets' route tables carry **no internet route in either direction** — this is a routing-level control, independent of and in addition to security groups. Two NAT Gateways (one per AZ, zone-local routing) exist specifically so that a single AZ failure never removes outbound connectivity from the surviving AZ. Full detail: [`docs/architecture.md#networking-architecture`](docs/architecture.md#networking-architecture).
 
 ## Compute layer
 
-Every application instance (`t3.small`) is launched from a single validated **Golden AMI** containing Nginx, Next.js, and FastAPI pre-installed and pre-configured — no bootstrap/User Data script runs at launch. This is what makes horizontal scaling safe: instance *n+1* is guaranteed functionally identical to instance *n*, and a reboot test was performed before the AMI was captured specifically to confirm all three services restart unattended (required, since the Auto Scaling Group launches instances with no human present).
+Every application instance (`t3.small`) is launched from a single validated **Golden AMI** containing Nginx, Next.js, and FastAPI pre-installed and pre-configured — no bootstrap/User Data script runs at launch. This is what makes horizontal scaling safe: instance _n+1_ is guaranteed functionally identical to instance _n_, and a reboot test was performed before the AMI was captured specifically to confirm all three services restart unattended (required, since the Auto Scaling Group launches instances with no human present).
 
-| Setting | Value |
-|---|---|
-| Launch Template | Custom AMI, `t3.small`, `ec2-sg`, IAM profile → `LuminaEC2SSMRole` |
-| Auto Scaling Group | `dental-asg` — min **2** / desired **2** / max **6** |
-| Scaling policy | Target Tracking on CPU utilisation |
+| Setting            | Value                                                              |
+| ------------------ | ------------------------------------------------------------------ |
+| Launch Template    | Custom AMI, `t3.small`, `ec2-sg`, IAM profile → `LuminaEC2SSMRole` |
+| Auto Scaling Group | `dental-asg` — min **2** / desired **2** / max **6**               |
+| Scaling policy     | Target Tracking on CPU utilisation                                 |
 
 Full detail: [`docs/architecture.md#compute-layer`](docs/architecture.md#compute-layer) · [`docs/scalability-availability.md`](docs/scalability-availability.md)
 
@@ -135,15 +135,15 @@ Every EC2 instance carries the IAM role `LuminaEC2SSMRole` (with the AWS-managed
 
 Seven CloudWatch alarms, all on a 5-minute evaluation period, across the Auto Scaling Group, the ALB, the Target Group, and RDS — all publishing to a single SNS topic with an email subscription:
 
-| Metric | Statistic | Condition | Detects |
-|---|---|---|---|
-| ASG `GroupInServiceInstances` | Minimum | < 2 | Missing compute capacity |
-| ALB `HTTPCode_ELB_4XX_Count` | Sum | > 5 / 5 min | Load-balancer–level client errors |
-| Target Group `HealthyHostCount` | Minimum | < 2 | Capacity that exists but can't serve traffic |
-| Target Group `HTTPCode_Target_4XX_Count` | Sum | > 5 / 5 min | Application-level client errors |
-| RDS `CPUUtilization` | Average | > 80% | Database compute pressure |
-| RDS `DatabaseConnections` | Average | > 80 | Connection-pool pressure |
-| RDS `FreeStorageSpace` | Minimum | < 2 GB | Impending storage exhaustion |
+| Metric                                   | Statistic | Condition   | Detects                                      |
+| ---------------------------------------- | --------- | ----------- | -------------------------------------------- |
+| ASG `GroupInServiceInstances`            | Minimum   | < 2         | Missing compute capacity                     |
+| ALB `HTTPCode_ELB_4XX_Count`             | Sum       | > 5 / 5 min | Load-balancer–level client errors            |
+| Target Group `HealthyHostCount`          | Minimum   | < 2         | Capacity that exists but can't serve traffic |
+| Target Group `HTTPCode_Target_4XX_Count` | Sum       | > 5 / 5 min | Application-level client errors              |
+| RDS `CPUUtilization`                     | Average   | > 80%       | Database compute pressure                    |
+| RDS `DatabaseConnections`                | Average   | > 80        | Connection-pool pressure                     |
+| RDS `FreeStorageSpace`                   | Minimum   | < 2 GB      | Impending storage exhaustion                 |
 
 **Known gap:** no 5XX or latency alarms are configured, and no centralized logging exists — instance logs are lost when an instance is replaced. Full rationale for each metric/statistic choice and prioritized recommendations: [`docs/monitoring.md`](docs/monitoring.md).
 
@@ -164,7 +164,7 @@ The architecture is resilient to **infrastructure failure within a single AWS Re
 
 ## Cost considerations
 
-No pricing data is recorded in the project documentation except one AWS-displayed estimate: **AWS WAF at approximately $42–$43 per 10 million requests/month**. No other figures are invented anywhere in this repository. What can be stated accurately is the cost *shape*: the bill is dominated by **fixed, availability-driven costs** — two NAT Gateways, a Multi-AZ RDS standby, the ALB, and a baseline of two always-on EC2 instances — rather than by traffic volume. Every one of those fixed costs is a deliberate redundancy decision recorded in the build documentation, not incidental spend. Full breakdown: [`docs/architecture.md#cost-considerations-summary`](docs/architecture.md#cost-considerations-summary).
+No pricing data is recorded in the project documentation except one AWS-displayed estimate: **AWS WAF at approximately $42–$43 per 10 million requests/month**. No other figures are invented anywhere in this repository. What can be stated accurately is the cost _shape_: the bill is dominated by **fixed, availability-driven costs** — two NAT Gateways, a Multi-AZ RDS standby, the ALB, and a baseline of two always-on EC2 instances — rather than by traffic volume. Every one of those fixed costs is a deliberate redundancy decision recorded in the build documentation, not incidental spend. Full breakdown: [`docs/architecture.md#cost-considerations-summary`](docs/architecture.md#cost-considerations-summary).
 
 ## Deployment
 
@@ -174,9 +174,17 @@ This project was built **manually through the AWS Console** — there is no Infr
 
 Documented, actually-performed checks include: backend/frontend health checks, an unattended reboot test (required before the AMI could be trusted as a scaling source), application access validated through the ALB, SSM Agent and Session Manager connectivity, and two live WAF validations (a blocked `/admin` request traced to its exact matching rule, and an observed internet scanner correctly allowed through). Auto Scaling under real load, RDS failover, and CloudWatch alarm firing are **not** documented as tested — see the full table and suggested safe-verification methods in [`docs/deployment.md#verification--testing-performed`](docs/deployment.md#verification--testing-performed) and [`docs/troubleshooting.md`](docs/troubleshooting.md).
 
+## Video walkthrough
+
+The full console workflow — networking, compute, database, security, and monitoring — is documented in a recorded video rather than static screenshots:
+
+**Video:** `[ADD VIDEO LINK HERE]`
+
+*(Hosted externally rather than committed to git — the raw file is 168 MB, over GitHub's 100 MB per-file push limit. See [`docs/video/README.md`](docs/video/README.md).)*
+
 ## Screenshots
 
-No screenshots were included in the original project materials. See [`docs/screenshots/README.md`](docs/screenshots/README.md) for the suggested folder layout to use if they are captured later.
+No static screenshots are included — see [Video walkthrough](#video-walkthrough) above. The suggested folder layout for screenshots, if any are extracted from the video later, is in [`docs/screenshots/README.md`](docs/screenshots/README.md).
 
 ## Project structure
 
@@ -201,6 +209,8 @@ No screenshots were included in the original project materials. See [`docs/scree
     │   ├── aws-architecture.drawio
     │   └── original-target-diagram.png
     ├── screenshots/
+    ├── video/
+    │   └── aws-project-walkthrough.mp4   # gitignored — hosted externally, see docs/video/README.md
     └── source-material/
         ├── project-doc-raw.md
         └── architecture-report-full.md
@@ -210,17 +220,18 @@ Full explanation of each path: [`docs/project-structure.md`](docs/project-struct
 
 ## Documentation index
 
-| Document | Contents |
-|---|---|
-| [docs/architecture.md](docs/architecture.md) | Complete architecture: networking, compute, database, CDN, request flow, documented diagram discrepancies |
-| [docs/aws-services.md](docs/aws-services.md) | Every AWS service used, plus what was planned but not deployed |
-| [docs/security.md](docs/security.md) | Defense-in-depth, security groups, WAF rules, Systems Manager, IAM, gaps and recommendations |
-| [docs/monitoring.md](docs/monitoring.md) | CloudWatch alarms, SNS, alerting lifecycle, coverage gaps |
-| [docs/scalability-availability.md](docs/scalability-availability.md) | Auto Scaling, HA mechanisms, full failure-scenario catalog, real scaling constraints |
-| [docs/deployment.md](docs/deployment.md) | Actual build sequence, prerequisites, the HTTPS chain not yet executed, verification performed |
-| [docs/troubleshooting.md](docs/troubleshooting.md) | Operational workflow, alarm response, configuration values worth confirming |
-| [docs/demo-script.md](docs/demo-script.md) | Suggested walkthrough sequence for a live or recorded demo |
-| [docs/source-material/](docs/source-material/) | Original, unedited build notes and the full evidence-audited architecture report |
+| Document                                                             | Contents                                                                                                  |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [docs/architecture.md](docs/architecture.md)                         | Complete architecture: networking, compute, database, CDN, request flow, documented diagram discrepancies |
+| [docs/aws-services.md](docs/aws-services.md)                         | Every AWS service used, plus what was planned but not deployed                                            |
+| [docs/security.md](docs/security.md)                                 | Defense-in-depth, security groups, WAF rules, Systems Manager, IAM, gaps and recommendations              |
+| [docs/monitoring.md](docs/monitoring.md)                             | CloudWatch alarms, SNS, alerting lifecycle, coverage gaps                                                 |
+| [docs/scalability-availability.md](docs/scalability-availability.md) | Auto Scaling, HA mechanisms, full failure-scenario catalog, real scaling constraints                      |
+| [docs/deployment.md](docs/deployment.md)                             | Actual build sequence, prerequisites, the HTTPS chain not yet executed, verification performed            |
+| [docs/troubleshooting.md](docs/troubleshooting.md)                   | Operational workflow, alarm response, configuration values worth confirming                               |
+| [docs/demo-script.md](docs/demo-script.md)                           | Walkthrough sequence covered by the recorded video                                                        |
+| [docs/video/README.md](docs/video/README.md)                         | Recorded video walkthrough — hosting link and status                                                      |
+| [docs/source-material/](docs/source-material/)                       | Original, unedited build notes and the full evidence-audited architecture report                          |
 
 ## License
 

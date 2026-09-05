@@ -37,3 +37,12 @@ build/
 # Local scratch / temp files
 *.tmp
 *.log
+
+# Editor-generated diagram previews (auto-exported by draw.io editor extensions)
+docs/architecture/*.drawio.png
+
+# Project walkthrough video — too large for a normal git push (168MB > GitHub's
+# 100MB hard limit) and hosted externally instead. See README.md / docs/demo-script.md
+# for the link. Keeping the raw file here locally is fine; it just won't be pushed.
+final.mp4
+docs/video/

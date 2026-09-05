@@ -1,6 +1,8 @@
-# Suggested Demonstration Script
+# Demonstration Script
 
-No recorded video or live demo URL was included in the project materials, so this is a **suggested sequence** for demonstrating the deployed architecture — not a transcript of an existing recording. It only includes features the project documentation records as actually implemented; it does not include Route 53, HTTPS, or any other planned-but-not-deployed component (see [`docs/architecture.md`](architecture.md#known-documentation-discrepancies)).
+A full recorded walkthrough of the deployed infrastructure exists — see [`docs/video/README.md`](video/README.md) for the hosting link. This document is the **companion outline** for that recording: a topic checklist covering what a complete walkthrough should show, useful for jumping to a specific section or for re-recording/extending the video later. It only includes features the project documentation records as actually implemented; it does not include Route 53, HTTPS, or any other planned-but-not-deployed component (see [`docs/architecture.md`](architecture.md#known-documentation-discrepancies)).
+
+> If you add timestamps for the recorded video against each numbered section below, this file becomes a clickable table of contents for it.
 
 ## 1. Architecture overview (1–2 min)
 
