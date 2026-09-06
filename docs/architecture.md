@@ -19,7 +19,7 @@ The architectural goal was to make the application **survive the loss of a singl
 
 ![Lumina Dental AWS architecture diagram](architecture/aws-architecture.png)
 
-Rendered with the official AWS Architecture Icons via [`architecture/generate_diagram.py`](architecture/generate_diagram.py) (the [`diagrams`](https://diagrams.mingrammer.com/) Python package — regenerate with `python generate_diagram.py`) · Vector: [`architecture/aws-architecture.svg`](architecture/aws-architecture.svg)
+Editable source: [`architecture/aws-architecture.drawio`](architecture/aws-architecture.drawio) (open in [diagrams.net](https://app.diagrams.net)) · Vector: [`architecture/aws-architecture.svg`](architecture/aws-architecture.svg)
 
 The original diagram produced during the project is kept for reference at [`architecture/original-target-diagram.png`](architecture/original-target-diagram.png). It includes Route 53 and an implied HTTPS path, both of which the build documentation records as **planned but not deployed** — the diagram above corrects for this and reflects the as-built system. See [Known documentation discrepancies](#known-documentation-discrepancies) below.
 
