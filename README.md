@@ -27,7 +27,7 @@ The application stack is **Next.js** (frontend), **FastAPI/Uvicorn** (backend AP
 
 ![AWS Solution Architecture](docs/architecture/aws-architecture.png)
 
-_Editable source: [`docs/architecture/aws-architecture.drawio`](docs/architecture/aws-architecture.drawio) (open in [diagrams.net](https://app.diagrams.net)) · Vector: [`docs/architecture/aws-architecture.svg`](docs/architecture/aws-architecture.svg)_
+_Rendered with the official AWS Architecture Icons via [`docs/architecture/generate_diagram.py`](docs/architecture/generate_diagram.py) (the [`diagrams`](https://diagrams.mingrammer.com/) Python package — regenerate with `python generate_diagram.py`) · Vector: [`docs/architecture/aws-architecture.svg`](docs/architecture/aws-architecture.svg)_
 
 Full architectural detail — including exact CIDR blocks, route tables, and the reasoning behind every major decision — is in **[`docs/architecture.md`](docs/architecture.md)**.
 
@@ -206,7 +206,7 @@ No static screenshots are included — see [Video walkthrough](#video-walkthroug
     ├── architecture/
     │   ├── aws-architecture.png
     │   ├── aws-architecture.svg
-    │   ├── aws-architecture.drawio
+    │   ├── generate_diagram.py         # Regenerates the two files above (AWS Architecture Icons)
     │   └── original-target-diagram.png
     ├── screenshots/
     ├── video/

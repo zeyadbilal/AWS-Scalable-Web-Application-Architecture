@@ -20,7 +20,8 @@ This repository documents an AWS infrastructure project that was built through t
     ├── architecture/
     │   ├── aws-architecture.png           # Rendered solution diagram (embedded in README)
     │   ├── aws-architecture.svg           # Vector version of the same diagram
-    │   ├── aws-architecture.drawio        # Editable source (open in diagrams.net / draw.io)
+    │   ├── generate_diagram.py            # Regenerates both files above using the official AWS
+    │   │                                  # Architecture Icons (the `diagrams` Python package)
     │   └── original-target-diagram.png    # The diagram originally produced during the project,
     │                                      # kept for reference — it includes Route 53/HTTPS as
     │                                      # target architecture; see docs/architecture.md for the
