@@ -25,9 +25,9 @@ The application stack is **Next.js** (frontend), **FastAPI/Uvicorn** (backend AP
 
 ## Architecture
 
-![AWS Solution Architecture](docs/architecture/aws-architecture.png)
+![AWS Solution Architecture](docs/architecture/lumina-dental-architecture.svg)
 
-_Editable source: [`docs/architecture/aws-architecture.drawio`](docs/architecture/aws-architecture.drawio) (open in [diagrams.net](https://app.diagrams.net)) · Vector: [`docs/architecture/aws-architecture.svg`](docs/architecture/aws-architecture.svg)_
+_Raster version: [`docs/architecture/lumina-dental-architecture.png`](docs/architecture/lumina-dental-architecture.png)_
 
 Full architectural detail — including exact CIDR blocks, route tables, and the reasoning behind every major decision — is in **[`docs/architecture.md`](docs/architecture.md)**.
 
@@ -204,9 +204,8 @@ No static screenshots are included — see [Video walkthrough](#video-walkthroug
     ├── project-structure.md
     ├── demo-script.md
     ├── architecture/
-    │   ├── aws-architecture.png
-    │   ├── aws-architecture.svg
-    │   ├── aws-architecture.drawio
+    │   ├── lumina-dental-architecture.svg
+    │   ├── lumina-dental-architecture.png
     │   └── original-target-diagram.png
     ├── screenshots/
     ├── video/

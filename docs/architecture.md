@@ -17,9 +17,9 @@ The architectural goal was to make the application **survive the loss of a singl
 
 ## Solution diagram
 
-![Lumina Dental AWS architecture diagram](architecture/aws-architecture.png)
+![Lumina Dental AWS architecture diagram](architecture/lumina-dental-architecture.svg)
 
-Editable source: [`architecture/aws-architecture.drawio`](architecture/aws-architecture.drawio) (open in [diagrams.net](https://app.diagrams.net)) · Vector: [`architecture/aws-architecture.svg`](architecture/aws-architecture.svg)
+Raster version: [`architecture/lumina-dental-architecture.png`](architecture/lumina-dental-architecture.png)
 
 The original diagram produced during the project is kept for reference at [`architecture/original-target-diagram.png`](architecture/original-target-diagram.png). It includes Route 53 and an implied HTTPS path, both of which the build documentation records as **planned but not deployed** — the diagram above corrects for this and reflects the as-built system. See [Known documentation discrepancies](#known-documentation-discrepancies) below.
 

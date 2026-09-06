@@ -6,7 +6,7 @@ A full recorded walkthrough of the deployed infrastructure is available here: **
 
 ## 1. Architecture overview (1–2 min)
 
-Show [`docs/architecture/aws-architecture.png`](architecture/aws-architecture.png) and narrate the layers top to bottom: users → CloudFront → WAF → ALB → Auto Scaling Group (private subnets, 2 AZs) → RDS PostgreSQL (Multi-AZ, isolated subnets), with CloudWatch/SNS/Systems Manager as a separate control plane on the side. Call out explicitly that Route 53/HTTPS are marked "planned, not implemented."
+Show [`docs/architecture/lumina-dental-architecture.svg`](architecture/lumina-dental-architecture.svg) and narrate the layers top to bottom: users → CloudFront → WAF → ALB → Auto Scaling Group (private subnets, 2 AZs) → RDS PostgreSQL (Multi-AZ, isolated subnets), with CloudWatch/SNS/Systems Manager as a separate control plane on the side. Call out explicitly that Route 53/HTTPS are marked "planned, not implemented."
 
 ## 2. Application access (1 min)
 
